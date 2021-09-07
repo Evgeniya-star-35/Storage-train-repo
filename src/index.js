@@ -11,13 +11,14 @@ refs.form.addEventListener('submit', onFormSubmit);
 // refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
 refs.form.addEventListener('input', onFormData);
 
-populateInput();
+// populateInput();
 populateTextarea();
+let strFormData = "";
 function onFormData(e) {
     e.preventDefault();
     formData[e.target.name] = e.target.value;
-    console.log(formData);
-    const strFormData = JSON.stringify(formData);
+    strFormData = JSON.stringify(formData);
+    console.log(strFormData);
     localStorage.setItem('feedback', strFormData);
 
 }
@@ -33,14 +34,16 @@ function onFormSubmit(e) {
 
 // }
 function populateTextarea() {
+    
     const savedMassage = localStorage.getItem('feedback');
+    console.log(savedMassage);
     if (savedMassage) {
         refs.textarea.value = savedMassage;
     }
 }
-function populateInput() {
-    const saveName = localStorage.getItem('feedback');
-    if (saveName) {
-        refs.input.value = saveName;
-    }
-}
+// function populateInput() {
+//     const saveName = localStorage.getItem('feedback');
+//     if (saveName) {
+//         refs.input.value = saveName;
+//     }
+// }
