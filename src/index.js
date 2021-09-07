@@ -6,19 +6,18 @@ const refs = {
     input:document.querySelector(".input")
 }
 
-const formData ={}
+const formData = {};
+
 refs.form.addEventListener('submit', onFormSubmit);
 // refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
-refs.form.addEventListener('input', onFormData);
+refs.form.addEventListener('input', throttle(onFormData,500));
 
-// populateInput();
+populateInput();
 populateTextarea();
-let strFormData = "";
 function onFormData(e) {
     e.preventDefault();
     formData[e.target.name] = e.target.value;
-    strFormData = JSON.stringify(formData);
-    console.log(strFormData);
+    const strFormData = JSON.stringify(formData);
     localStorage.setItem('feedback', strFormData);
 
 }
@@ -34,16 +33,19 @@ function onFormSubmit(e) {
 
 // }
 function populateTextarea() {
-    
     const savedMassage = localStorage.getItem('feedback');
-    console.log(savedMassage);
+    const parsedMassage = JSON.parse(savedMassage);
+    console.log(parsedMassage);
     if (savedMassage) {
-        refs.textarea.value = savedMassage;
+        refs.textarea.value = parsedMassage.name;
     }
 }
-// function populateInput() {
-//     const saveName = localStorage.getItem('feedback');
-//     if (saveName) {
-//         refs.input.value = saveName;
-//     }
-// }
+function populateInput() {
+    const savedMassageName = localStorage.getItem('feedback');
+    const parsedMassageName = JSON.parse(savedMassageName);
+    console.log(parsedMassageName);
+    if (parsedMassageName) {
+        refs.input.value = parsedMassageName.user_name;
+    }
+}
+
