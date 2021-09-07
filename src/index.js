@@ -35,7 +35,7 @@ function onFormSubmit(e) {
 function populateTextarea() {
     const savedMassage = localStorage.getItem('feedback');
     const parsedMassage = JSON.parse(savedMassage);
-    console.log(parsedMassage);
+    // console.log(parsedMassage);
     if (savedMassage) {
         refs.textarea.value = parsedMassage.name;
     }
@@ -43,7 +43,7 @@ function populateTextarea() {
 function populateInput() {
     const savedMassageName = localStorage.getItem('feedback');
     const parsedMassageName = JSON.parse(savedMassageName);
-    console.log(parsedMassageName);
+    // console.log(parsedMassageName);
     if (parsedMassageName) {
         refs.input.value = parsedMassageName.user_name;
     }
