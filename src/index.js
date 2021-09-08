@@ -36,7 +36,7 @@ function populateTextarea() {
     const savedMassage = localStorage.getItem('feedback');
     const parsedMassage = JSON.parse(savedMassage);
     // console.log(parsedMassage);
-    if (savedMassage) {
+    if (parsedMassage) {
         refs.textarea.value = parsedMassage.name;
     }
 }
